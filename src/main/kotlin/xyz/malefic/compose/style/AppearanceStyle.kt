@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
+import xyz.malefic.extensions.tuple.Quadruple
 
 @Suppress("UNCHECKED_CAST")
 class AppearanceStyle(
@@ -38,17 +39,27 @@ class AppearanceStyle(
      */
     private fun Modifier.buildPadding(): Modifier =
         when (val paddingVal = padding) {
-            is PaddingValues -> padding(paddingVal)
-            is Dp -> padding(paddingVal)
+            is PaddingValues -> {
+                padding(paddingVal)
+            }
+
+            is Dp -> {
+                padding(paddingVal)
+            }
+
             is Pair<*, *> -> {
                 val (horizontal, vertical) = paddingVal as Pair<Dp, Dp>
                 padding(horizontal, vertical)
             }
+
             is Quadruple<*, *, *, *> -> {
                 val quad = paddingVal as Quadruple<Dp, Dp, Dp, Dp>
                 padding(quad.first, quad.second, quad.third, quad.fourth)
             }
-            else -> this
+
+            else -> {
+                this
+            }
         }
 
     /**
@@ -72,12 +83,18 @@ class AppearanceStyle(
      */
     private fun Modifier.buildBackground(): Modifier =
         when (val bg = background) {
-            is Color -> background(bg)
+            is Color -> {
+                background(bg)
+            }
+
             is Pair<*, *> -> {
                 val (color, shape) = bg
                 background(color as Color, shape as Shape)
             }
-            else -> this
+
+            else -> {
+                this
+            }
         }
 
     /**
@@ -103,7 +120,10 @@ class AppearanceStyle(
      */
     private fun Modifier.buildBorder(): Modifier =
         when (val borderValue = border) {
-            is BorderStroke -> border(borderValue)
+            is BorderStroke -> {
+                border(borderValue)
+            }
+
             is Pair<*, *> -> {
                 val (first, second) = borderValue
                 when (first) {
@@ -112,6 +132,7 @@ class AppearanceStyle(
                     else -> this
                 }
             }
+
             is Triple<*, *, *> -> {
                 val (width, fillOrBrush, shape) = borderValue
                 when (fillOrBrush) {
@@ -120,6 +141,9 @@ class AppearanceStyle(
                     else -> this
                 }
             }
-            else -> this
+
+            else -> {
+                this
+            }
         }
 }

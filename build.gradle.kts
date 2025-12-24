@@ -1,6 +1,6 @@
 import cn.lalaki.pub.BaseCentralPortalPlusExtension.PublishingType
 
-val user = "MaleficCompose"
+val user = "OmyDaGreat"
 val repo = "MaleficStyle"
 val g = "xyz.malefic.compose"
 val artifact = "style"
@@ -30,6 +30,7 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.malefic.extensions)
     implementation(compose.desktop.common)
     implementation(libs.kermit)
     testImplementation(kotlin("test"))

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.unit.dp
+import xyz.malefic.extensions.tuple.to
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

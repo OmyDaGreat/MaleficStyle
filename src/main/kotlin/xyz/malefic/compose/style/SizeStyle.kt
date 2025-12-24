@@ -104,13 +104,22 @@ class SizeStyle(
      */
     private fun Modifier.buildWrapContentSize(): Modifier =
         when (val wrapContentSizeValue = wrapContentSize) {
-            is Alignment -> wrapContentSize(wrapContentSizeValue)
-            is Boolean -> wrapContentSize(unbounded = wrapContentSizeValue)
+            is Alignment -> {
+                wrapContentSize(wrapContentSizeValue)
+            }
+
+            is Boolean -> {
+                wrapContentSize(unbounded = wrapContentSizeValue)
+            }
+
             is Pair<*, *> -> {
                 val (alignment, unbounded) = wrapContentSizeValue
                 wrapContentSize(alignment as Alignment, unbounded as Boolean)
             }
-            else -> this
+
+            else -> {
+                this
+            }
         }
 
     /**
@@ -136,12 +145,21 @@ class SizeStyle(
      */
     private fun Modifier.buildSize(): Modifier =
         when (val sizeValue = size) {
-            is Dp -> size(sizeValue)
-            is DpSize -> size(sizeValue)
+            is Dp -> {
+                size(sizeValue)
+            }
+
+            is DpSize -> {
+                size(sizeValue)
+            }
+
             is Pair<*, *> -> {
                 val (width, height) = sizeValue
                 size(width as Dp, height as Dp)
             }
-            else -> this
+
+            else -> {
+                this
+            }
         }
 }

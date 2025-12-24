@@ -46,13 +46,22 @@ class InteractStyle(
      */
     private fun Modifier.buildFocusable(): Modifier =
         when (val focusableValue = focusable) {
-            is Boolean -> focusable(focusableValue)
-            is MutableInteractionSource -> focusable(interactionSource = focusableValue)
+            is Boolean -> {
+                focusable(focusableValue)
+            }
+
+            is MutableInteractionSource -> {
+                focusable(interactionSource = focusableValue)
+            }
+
             is Pair<*, *> -> {
                 val (enabled, interactionSource) = focusableValue
                 focusable(enabled as Boolean, interactionSource as MutableInteractionSource)
             }
-            else -> this
+
+            else -> {
+                this
+            }
         }
 
     /**
@@ -114,15 +123,21 @@ class InteractStyle(
     @OptIn(ExperimentalComposeUiApi::class)
     private fun Modifier.buildPointerEvent(): Modifier =
         when (val onPointerEventValue = onPointerEvent) {
-            is Pair<*, *> ->
+            is Pair<*, *> -> {
                 onPointerEvent(onPointerEventValue.first as PointerEventType) { event ->
                     (onPointerEventValue.second as (AwaitPointerEventScope.(PointerEvent) -> Unit)).invoke(this, event)
                 }
-            is Triple<*, *, *> ->
+            }
+
+            is Triple<*, *, *> -> {
                 onPointerEvent(onPointerEventValue.first as PointerEventType, onPointerEventValue.second as PointerEventPass) { event ->
                     (onPointerEventValue.third as (AwaitPointerEventScope.(PointerEvent) -> Unit)).invoke(this, event)
                 }
-            else -> this
+            }
+
+            else -> {
+                this
+            }
         }
 
     /**
