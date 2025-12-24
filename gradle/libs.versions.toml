@@ -2,7 +2,7 @@
 kotlin = "2.3.0"
 kotlinter = "5.0.2"
 kermit = "2.0.8"
-central = "1.2.8"
+central = "2.0.2"
 dokka = "2.1.0"
 compose = "1.8.10-alpha01"
 
